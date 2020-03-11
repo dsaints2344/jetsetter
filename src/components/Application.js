@@ -54,6 +54,15 @@ class Application extends Component {
     })
   }
 
+  markAllAsUnpacked = () => {
+    const items = this.state.items.map(item => {
+      return {...item, packed: false}
+    });
+    this.setState({
+      items
+    })
+  }
+
   render() {
     // Get the items from state
     const {items} = this.state;
@@ -66,7 +75,7 @@ class Application extends Component {
         <CountDown />
         <Items title="Unpacked Items" items={unpackedItems} onRemove={this.removeItem} onToogle={this.toogleItem}/>
         <Items title="Packed Items" items={packedItems}  onRemove={this.removeItem} onToogle={this.toogleItem}/>
-        <button className="button full-width">Mark All As Unpacked</button>
+        <button className="button full-width" onClick={this.markAllAsUnpacked}>Mark All As Unpacked</button>
       </div>
     );
   }
